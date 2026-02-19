@@ -1,6 +1,8 @@
 package com.socail.media.models;
 
 import jakarta.persistence.*;
+import java.util.ArrayList;
+import java.util.List;
 
 @Entity
 public class SocialUser {
@@ -8,7 +10,10 @@ public class SocialUser {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @OneToOne
-    @JoinColumn(name = "social_profile_id")
+    @OneToOne(mappedBy = "user")
+//    @JoinColumn(name = "social_profile_id")
     private SocialProfile socialProfile;
+
+    @OneToMany
+    private List<Post> posts = new ArrayList<>();
 }
